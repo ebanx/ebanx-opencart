@@ -171,6 +171,7 @@ class ControllerPaymentEbanx extends Controller
 			, 'phone_number'  => $order_info['telephone']
 			, 'payment_type_code' 		=> '_all'
 			, 'merchant_payment_code' => $order_info['order_id']
+			, 'plugin_source'     => 'Opencart ver. ' . VERSION
 		);
 
 		$response = \Ebanx\Ebanx::doRequest($params);

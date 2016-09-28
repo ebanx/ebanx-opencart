@@ -229,6 +229,7 @@ class ControllerPaymentEbanxExpress extends Controller
 				        , 'city'              => $order_info['payment_city']
 				        , 'state'             => $order_info['payment_zone_code']
 				        , 'country'           => 'br'
+				        , 'plugin_source'     => 'Opencart ver. ' . VERSION
 			    	)
 	  );
 
