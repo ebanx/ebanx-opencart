@@ -37,6 +37,7 @@ require_once DIR_SYSTEM . 'library/ebanx-php/src/autoload.php';
  */
 class ControllerPaymentEbanx extends Controller
 {
+	const VERSION = '2.4.0';
 	/**
 	 * Error messages
 	 * @var array
@@ -53,6 +54,8 @@ class ControllerPaymentEbanx extends Controller
 		    'integrationKey' => $this->config->get('ebanx_merchant_key')
 		  , 'testMode'       => ($this->config->get('ebanx_mode') == 'test')
 		  , 'directMode'		 => false
+		  , 'sourceData'     => 'OpenCart/' . self::VERSION
+
 		));
 	}
 
@@ -92,7 +95,7 @@ class ControllerPaymentEbanx extends Controller
 			else
 			{
 				$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
-			}			
+			}
 		}
 
 		$view['heading_title'] = $this->language->get('heading_title');

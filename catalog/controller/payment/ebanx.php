@@ -37,6 +37,8 @@ require_once DIR_SYSTEM . 'library/ebanx-php/src/autoload.php';
  */
 class ControllerPaymentEbanx extends Controller
 {
+	const VERSION = '2.4.0';
+
 	/**
 	 * Initialize the EBANX settings before usage
 	 * @return void
@@ -47,6 +49,7 @@ class ControllerPaymentEbanx extends Controller
 		    'integrationKey' => $this->config->get('ebanx_merchant_key')
 		  , 'testMode'       => ($this->config->get('ebanx_mode') == 'test')
 		  , 'directMode'     => false
+		  , 'sourceData'     => 'OpenCart/' . self::VERSION
 		));
 	}
 
@@ -138,7 +141,7 @@ class ControllerPaymentEbanx extends Controller
 		else
 		{
 			$this->render();
-		}		
+		}
 	}
 
 	/**
@@ -216,7 +219,7 @@ class ControllerPaymentEbanx extends Controller
 	/**
 	 * Callback action. It's called when returning from EBANX.
 	 * @return void
-	 */ 
+	 */
 	public function callback()
 	{
 		$this->_setupEbanx();
@@ -280,7 +283,7 @@ class ControllerPaymentEbanx extends Controller
 					}
 
 					$this->redirect($this->url->link('checkout/success'));
-				}				
+				}
 			}
 			else
 			{
@@ -303,7 +306,7 @@ class ControllerPaymentEbanx extends Controller
 				else
 				{
 					$this->response->setOutput($this->render());
-				}				
+				}
 			}
 		}
 		else
@@ -326,7 +329,7 @@ class ControllerPaymentEbanx extends Controller
 			else
 			{
 				$this->response->setOutput($this->render());
-			}	
+			}
 		}
 	}
 

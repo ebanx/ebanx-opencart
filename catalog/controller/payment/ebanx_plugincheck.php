@@ -1,14 +1,13 @@
 <?php
 
 class ControllerPaymentEbanxPlugincheck extends Controller {
-	const PLUGIN_VERSION = '2.4.0';
 
 	public function index() {
 		$info_list = array(
 			'mysql'          => $this->getSQLVersion(),
 			'php'            => phpversion(),
 			'Opencart'       => VERSION,
-			'ebanx-opencart' => self::PLUGIN_VERSION,
+			'ebanx-opencart' => ControllerPaymentEbanx::VERSION,
 			'configs'        => $this->getConfigs(),
 			'plugins'        => $this->getPlugins(),
 		);

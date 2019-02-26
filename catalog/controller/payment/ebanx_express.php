@@ -37,6 +37,7 @@ require_once DIR_SYSTEM . 'library/ebanx-php/src/autoload.php';
  */
 class ControllerPaymentEbanxExpress extends Controller
 {
+	const VERSION = '2.4.0';
 	/**
 	 * Initialize the EBANX settings before usage
 	 * @return void
@@ -47,6 +48,8 @@ class ControllerPaymentEbanxExpress extends Controller
 		    'integrationKey' => $this->config->get('ebanx_express_merchant_key')
 		  , 'testMode'       => ($this->config->get('ebanx_express_mode') == 'test')
 		  , 'directMode'     => true
+		  , 'sourceData'     => 'OpenCart/' . self::VERSION
+
 		));
 	}
 
@@ -302,7 +305,7 @@ class ControllerPaymentEbanxExpress extends Controller
 			else
 			{
 				$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('ebanx_express_order_status_op_id'));
-			}			
+			}
 
 			// If payment method is boleto, redirect to boleto page
 			if ($response->payment->payment_type_code == 'boleto')
@@ -410,7 +413,7 @@ class ControllerPaymentEbanxExpress extends Controller
 					}
 
 					$this->redirect($this->url->link('checkout/success'));
-				}				
+				}
 			}
 			else
 			{
@@ -433,7 +436,7 @@ class ControllerPaymentEbanxExpress extends Controller
 				else
 				{
 					$this->response->setOutput($this->render());
-				}				
+				}
 			}
 		}
 		else
@@ -456,7 +459,7 @@ class ControllerPaymentEbanxExpress extends Controller
 			else
 			{
 				$this->response->setOutput($this->render());
-			}	
+			}
 		}
 
 		// Render either for OC1 or OC2
